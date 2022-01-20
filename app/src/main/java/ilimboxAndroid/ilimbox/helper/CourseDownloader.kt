@@ -1,135 +1,114 @@
-package ilimboxAndroid.ilimbox.helper;
+package ilimboxAndroid.ilimbox.helper
 
-import android.app.Activity;
-import android.content.Context;
+import android.app.Activity
+import android.content.Context
+import ilimboxAndroid.ilimbox.core.FileManager
+import ilimboxAndroid.ilimbox.helper.CourseRequestHandler.CallBack
+import ilimboxAndroid.ilimbox.models.course.CourseSection
+import ilimboxAndroid.ilimbox.models.course.Module
+import io.realm.Realm
 
-import java.util.List;
-
-import ilimboxAndroid.ilimbox.core.FileManager;
-import ilimboxAndroid.ilimbox.models.course.Content;
-import ilimboxAndroid.ilimbox.models.course.CourseSection;
-import ilimboxAndroid.ilimbox.models.course.Module;
-import io.realm.Realm;
-import io.realm.RealmResults;
-import kotlin.Unit;
-
-public class CourseDownloader {
-    private DownloadCallback downloadCallback;
-    private final FileManager fileManager;
-    private final Realm realm;
-    private final Context context;
-
-    public CourseDownloader(Activity activity, String courseName) {
-        this.context = activity;
-        realm = Realm.getDefaultInstance();
-
-        fileManager = new FileManager(activity, courseName, filename -> {
-            onDownloadCompleted();
-            return Unit.INSTANCE;
-        });
-        fileManager.registerDownloadReceiver();
+class CourseDownloader(activity: Activity, courseName: String?) {
+    private var downloadCallback: DownloadCallback? = null
+    private val fileManager: FileManager
+    private val realm: Realm
+    private val context: Context
+    fun setDownloadCallback(downloadCallback: DownloadCallback?) {
+        this.downloadCallback = downloadCallback
     }
 
-    public void setDownloadCallback(DownloadCallback downloadCallback) {
-        this.downloadCallback = downloadCallback;
-    }
+    fun downloadCourseData(courseId: Int) {
+        val courseRequestHandler = CourseRequestHandler()
+        val courseDataHandler = CourseDataHandler(realm)
+        courseRequestHandler.getCourseData(courseId, object : CallBack<List<CourseSection?>?> {
+            override fun onFailure(message: String, t: Throwable) {
+                if (downloadCallback != null) downloadCallback!!.onFailure()
+            }
 
-    public void downloadCourseData(final int courseId) {
-        CourseRequestHandler courseRequestHandler = new CourseRequestHandler();
-        final CourseDataHandler courseDataHandler = new CourseDataHandler(realm);
-        courseRequestHandler.getCourseData(courseId, new CourseRequestHandler.CallBack<List<CourseSection>>() {
-            @Override
-            public void onResponse(List<CourseSection> sectionList) {
+            override fun onResponse(sectionList: List<CourseSection?>?) {
                 if (sectionList == null) {
-                    if (downloadCallback != null)
-                        downloadCallback.onFailure();
-                    return;
+                    if (downloadCallback != null) downloadCallback!!.onFailure()
+                    return
                 }
-
-                courseDataHandler.replaceCourseData(courseId, sectionList);
-
-                if (downloadCallback != null)
-                    downloadCallback.onCourseDataDownloaded();
-                for (CourseSection section : sectionList) {
-                    downloadSection(section);
+                courseDataHandler.replaceCourseData(courseId, sectionList)
+                if (downloadCallback != null) downloadCallback!!.onCourseDataDownloaded()
+                for (section in sectionList) {
+                    downloadSection(section!!)
                 }
-
             }
-
-            @Override
-            public void onFailure(String message, Throwable t) {
-                if (downloadCallback != null)
-                    downloadCallback.onFailure();
-            }
-        });
+        })
     }
 
-
-    public void downloadSection(CourseSection section) {
-        fileManager.reloadFileList();
-        List<Module> modules = section.getModules();
-        for (Module module : modules) {
-            if (!module.isDownloadable())
-                continue;
-            for (Content content : module.getContents()) {
-                if (!fileManager.isModuleContentDownloaded(content)) {
-                    fileManager.downloadModuleContent(content, module);
+    fun downloadSection(section: CourseSection) {
+        fileManager.reloadFileList()
+        val modules: List<Module> = section.modules
+        for (module in modules) {
+            if (!module.isDownloadable) continue
+            for (content in module.contents) {
+                if (!fileManager.isModuleContentDownloaded(content!!)) {
+                    fileManager.downloadModuleContent(content, module)
                 }
             }
         }
     }
 
-    public int getDownloadedContentCount(int courseID) {
-        fileManager.reloadFileList();
-        int count = 0;
-        RealmResults<CourseSection> courseSections = realm.where(CourseSection.class).equalTo("courseId", courseID).findAll();
-        for (CourseSection section : courseSections) {
-            List<Module> modules = section.getModules();
-            for (Module module : modules) {
-                if (module.isDownloadable())
-                    for (Content content : module.getContents()) {
-                        if (fileManager.isModuleContentDownloaded(content)) {
-                            count++;
-                        }
+    fun getDownloadedContentCount(courseID: Int): Int {
+        fileManager.reloadFileList()
+        var count = 0
+        val courseSections = realm.where(
+            CourseSection::class.java
+        ).equalTo("courseId", courseID).findAll()
+        for (section in courseSections) {
+            val modules: List<Module> = section.modules
+            for (module in modules) {
+                if (module.isDownloadable) for (content in module.contents) {
+                    if (fileManager.isModuleContentDownloaded(content!!)) {
+                        count++
                     }
+                }
             }
-
         }
-        return count;
+        return count
     }
 
-    public int getTotalContentCount(int courseID) {
-        fileManager.reloadFileList();
-        int count = 0;
-        RealmResults<CourseSection> courseSections = realm.where(CourseSection.class).equalTo("courseId", courseID).findAll();
-        for (CourseSection section : courseSections) {
-            List<Module> modules = section.getModules();
-            for (Module module : modules) {
-                if (module.isDownloadable())
-                    count += module.getContents().size();
+    fun getTotalContentCount(courseID: Int): Int {
+        fileManager.reloadFileList()
+        var count = 0
+        val courseSections = realm.where(
+            CourseSection::class.java
+        ).equalTo("courseId", courseID).findAll()
+        for (section in courseSections) {
+            val modules: List<Module> = section.modules
+            for (module in modules) {
+                if (module.isDownloadable) count += module.contents.size
             }
-
         }
-        return count;
-
+        return count
     }
 
-    public void onDownloadCompleted() {
+    fun onDownloadCompleted() {
         if (downloadCallback != null) {
-            downloadCallback.onCourseContentDownloaded();
+            downloadCallback!!.onCourseContentDownloaded()
         }
     }
 
-    public void unregisterReceiver() {
-        fileManager.unregisterDownloadReceiver();
+    fun unregisterReceiver() {
+        fileManager.unregisterDownloadReceiver()
     }
 
+    interface DownloadCallback {
+        fun onCourseDataDownloaded()
+        fun onCourseContentDownloaded()
+        fun onFailure()
+    }
 
-    public interface DownloadCallback {
-        void onCourseDataDownloaded();
-
-        void onCourseContentDownloaded();
-
-        void onFailure();
+    init {
+        context = activity
+        realm = Realm.getDefaultInstance()
+        fileManager = FileManager(activity, courseName!!) { filename: String? ->
+            onDownloadCompleted()
+            Unit
+        }
+        fileManager.registerDownloadReceiver()
     }
 }

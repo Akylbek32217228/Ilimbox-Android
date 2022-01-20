@@ -1,328 +1,283 @@
-package ilimboxAndroid.ilimbox.helper;
+package ilimboxAndroid.ilimbox.helper
 
-import android.content.Context;
-import android.util.Log;
+import android.content.Context
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
+import com.google.gson.reflect.TypeToken
+import ilimboxAndroid.ilimbox.exceptions.InvalidTokenException
+import ilimboxAndroid.ilimbox.models.UserAccount
+import ilimboxAndroid.ilimbox.models.course.Content
+import ilimboxAndroid.ilimbox.models.course.Course
+import ilimboxAndroid.ilimbox.models.course.CourseSection
+import ilimboxAndroid.ilimbox.models.forum.Discussion
+import ilimboxAndroid.ilimbox.models.forum.ForumData
+import ilimboxAndroid.ilimbox.network.APIClient
+import ilimboxAndroid.ilimbox.network.MoodleServices
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.HttpException
+import retrofit2.Response
+import java.io.IOException
+import java.util.*
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
-import ilimboxAndroid.ilimbox.exceptions.InvalidTokenException;
-import ilimboxAndroid.ilimbox.models.UserAccount;
-import ilimboxAndroid.ilimbox.models.course.Content;
-import ilimboxAndroid.ilimbox.models.course.Course;
-import ilimboxAndroid.ilimbox.models.course.CourseSection;
-import ilimboxAndroid.ilimbox.models.course.Module;
-import ilimboxAndroid.ilimbox.models.forum.Discussion;
-import ilimboxAndroid.ilimbox.models.forum.ForumData;
-import ilimboxAndroid.ilimbox.network.APIClient;
-import ilimboxAndroid.ilimbox.network.MoodleServices;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.HttpException;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
-
-public class CourseRequestHandler {
-
-    public static final String TAG = CourseRequestHandler.class.getName();
-    public static final String INVALID_TOKEN = "Invalid token";
-    public static final String NETWORK_ERROR = "Network error";
-    public static final String ACCESS_EXCEPTION = "accessexception";
-
-    final UserAccount userAccount;
-    final MoodleServices moodleServices;
-
-    public CourseRequestHandler() {
-        userAccount = UserAccount.INSTANCE;
-        Retrofit retrofit = APIClient.getRetrofitInstance();
-        moodleServices = retrofit.create(MoodleServices.class);
-    }
-
-    public List<Course> fetchCourseListSync() throws IOException, RuntimeException, InvalidTokenException {
+class CourseRequestHandler {
+    val userAccount: UserAccount
+    val moodleServices: MoodleServices
+    @Throws(IOException::class, RuntimeException::class, InvalidTokenException::class)
+    fun fetchCourseListSync(): List<Course> {
         // TODO this function is like #getCourseList(Context context)
         // This method is superior since we don't have to handle Contexts or display messages to the
         // user. Let the caller handle that using a callback they provide.
-        Log.d("qwerty", " user Token fetchCourseListSync" + userAccount.getToken() + "user account " + userAccount.getUserID());
-        Call<ResponseBody> courseCall = moodleServices.fetchCourses(userAccount.getToken(), userAccount.getUserID());
-        try {
-            Response<ResponseBody> response = courseCall.execute();
+        Log.d(
+            "qwerty",
+            " user Token fetchCourseListSync" + userAccount.token + "user account " + userAccount.userID
+        )
+        val courseCall = moodleServices.fetchCourses(userAccount.token, userAccount.userID)
+        return try {
+            val response = courseCall.execute()
             if (response.code() != 200) { // Moodle returns 200 for all API calls
-                HttpException e = new HttpException(response);
-                Log.e(TAG, "Response code not 200!", e);
-                throw e;
+                val e = HttpException(response)
+                Log.e(TAG, "Response code not 200!", e)
+                throw e
             }
-
             if (response.body() == null) {
-                throw new RuntimeException("Response body is null");
+                throw RuntimeException("Response body is null")
             }
-
-            String responseString = response.body().string();
+            val responseString = response.body()!!.string()
             if (responseString.contains("Invalid token")) {
-                throw new InvalidTokenException();
+                throw InvalidTokenException()
             }
-            Gson gson = new Gson();
-            return gson.fromJson(responseString, new TypeToken<List<Course>>() {}.getType());
-        } catch (IOException e) {
-            Log.e(TAG, "IOException when fetching Course List", e);
-            throw e;
+            val gson = Gson()
+            gson.fromJson(responseString, object : TypeToken<List<Course?>?>() {}.type)
+        } catch (e: IOException) {
+            Log.e(TAG, "IOException when fetching Course List", e)
+            throw e
         }
     }
 
-    public void getCourseList(@Nullable final CallBack<List<Course>> callBack) {
-        Log.d("qwerty", " user Token getCourseList" + userAccount.getToken()+ "user account " + userAccount.getUserID());
-        Call<ResponseBody> courseCall = moodleServices.fetchCourses(userAccount.getToken(), userAccount.getUserID());
-
-        courseCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
+    fun getCourseList(callBack: CallBack<List<Course?>?>?) {
+        Log.d(
+            "qwerty",
+            " user Token getCourseList" + userAccount.token + "user account " + userAccount.userID
+        )
+        val courseCall = moodleServices.fetchCourses(userAccount.token, userAccount.userID)
+        courseCall.enqueue(object : Callback<ResponseBody?> {
+            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 try {
                     if (response.body() == null) {
-                        return;
+                        return
                     }
-                    String responseString = response.body().string();
+                    val responseString = response.body()!!.string()
                     if (responseString.contains(INVALID_TOKEN)) {
-                        if (callBack != null) {
-                            callBack.onFailure(INVALID_TOKEN, new Throwable(INVALID_TOKEN));
-                        }
-                        return;
+                        callBack?.onFailure(INVALID_TOKEN, Throwable(INVALID_TOKEN))
+                        return
                     }
                     if (responseString.contains(ACCESS_EXCEPTION)) {
-                        if (callBack != null) {
-                            callBack.onFailure(ACCESS_EXCEPTION, new Throwable(ACCESS_EXCEPTION));
-                        }
-                        return;
+                        callBack?.onFailure(ACCESS_EXCEPTION, Throwable(ACCESS_EXCEPTION))
+                        return
                     }
-                    Gson gson = new Gson();
+                    val gson = Gson()
 
                     // TODO shouldn't crash for empty course list, but it did once
                     // User wasn't registered in any courses. Bug could not be replicated.
                     // Refer to Issue on Github for details.
-                    final List<Course> coursesList = gson
-                            .fromJson(responseString, new TypeToken<List<Course>>() {
-                            }.getType());
-
-                    if (callBack != null) {
-                        callBack.onResponse(coursesList);
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    if (callBack != null) {
-                        callBack.onFailure(e.getMessage(), new Throwable(e.getMessage()));
-                    }
-                } catch (JsonSyntaxException jse) {
-                    if (callBack != null) {
-                        callBack.onFailure(jse.getMessage(), new Throwable(jse.getMessage()));
-                    }
+                    val coursesList = gson
+                        .fromJson<List<Course?>>(
+                            responseString,
+                            object : TypeToken<List<Course?>?>() {}.type
+                        )
+                    callBack?.onResponse(coursesList)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    callBack?.onFailure(e.message, Throwable(e.message))
+                } catch (jse: JsonSyntaxException) {
+                    callBack?.onFailure(jse.message, Throwable(jse.message))
                 }
             }
 
-            @Override
-            public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
-                if (callBack != null) {
-                    callBack.onFailure(NETWORK_ERROR, t);
-                }
+            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                callBack?.onFailure(NETWORK_ERROR, t)
             }
-        });
+        })
     }
 
-    public List<Course> getCourseList(Context context) {
-        Log.d("qwerty", " user Token getCourseList" + userAccount.getToken()+ "user account " + userAccount.getUserID());
-        Call<ResponseBody> courseListCall = moodleServices.fetchCourses(userAccount.getToken(), userAccount.getUserID());
-
+    fun getCourseList(context: Context?): List<Course>? {
+        Log.d(
+            "qwerty",
+            " user Token getCourseList" + userAccount.token + "user account " + userAccount.userID
+        )
+        val courseListCall = moodleServices.fetchCourses(userAccount.token, userAccount.userID)
         try {
-            Response<ResponseBody> courseListResp = courseListCall.execute(); // sync call
+            val courseListResp = courseListCall.execute() // sync call
             if (courseListResp.code() != 200) {
-                return null;
+                return null
             }
-            if (courseListResp.body() == null) return null;
-            String responseString = courseListResp.body().string();
+            if (courseListResp.body() == null) return null
+            val responseString = courseListResp.body()!!.string()
             if (responseString.contains("Invalid token")) {
-                return null;
+                return null
             }
-            Gson gson = new Gson();
+            val gson = Gson()
             return gson
-                    .fromJson(responseString, new TypeToken<List<Course>>() {
-                    }.getType());
-
-        } catch (IOException e) {
+                .fromJson(responseString, object : TypeToken<List<Course?>?>() {}.type)
+        } catch (e: IOException) {
             if (context != null) {
 
                 //Toast.makeText(context, "Unable to connect to the Internet", Toast.LENGTH_SHORT).show();
             }
-        } catch (JsonSyntaxException jse) {
+        } catch (jse: JsonSyntaxException) {
             //if (context != null)
-                //Toast.makeText(context, "Malformed json. Maybe your token was reset!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Malformed json. Maybe your token was reset!", Toast.LENGTH_SHORT).show();
         }
-        return null;
+        return null
     }
 
-    public List<CourseSection> getCourseData(Course course) {
-
-        Call<List<CourseSection>> courseCall = moodleServices.fetchCourseContent(userAccount.getToken(), course.getId());
+    fun getCourseData(course: Course): List<CourseSection>? {
+        val courseCall = moodleServices.fetchCourseContent(userAccount.token, course.id)
         try {
-            Response<List<CourseSection>> response = courseCall.execute();
+            val response = courseCall.execute()
             if (response.code() != 200) {
-                return null;
+                return null
             }
-            List<CourseSection> responseCourseSections = response.body();
+            val responseCourseSections = response.body() ?: return ArrayList()
             //Log.d("ololo", "Response responseCourseSections" + responseCourseSections.get(0).getModules().get(0).getUrl());
-            if (responseCourseSections == null) return new ArrayList<>();
-            return resolve(responseCourseSections);
-        } catch (IOException e) {
-            Log.w(TAG, "IOException while getting course data", e);
+            return resolve(responseCourseSections)
+        } catch (e: IOException) {
+            Log.w(TAG, "IOException while getting course data", e)
         }
-        return null;
+        return null
     }
 
-    @NotNull
-    public List<CourseSection> getCourseDataSync(int courseId) throws IOException {
-        Call<List<CourseSection>> courseCall = moodleServices
-                .fetchCourseContent(userAccount.getToken(), courseId);
-        Response<List<CourseSection>> response = courseCall.execute();
-        List<CourseSection> responseCourseSections = response.body();
-        if (responseCourseSections == null) return new ArrayList<>(0);
-        return resolve(responseCourseSections);
+    @Throws(IOException::class)
+    fun getCourseDataSync(courseId: Int): List<CourseSection> {
+        val courseCall = moodleServices
+            .fetchCourseContent(userAccount.token, courseId)
+        val response = courseCall.execute()
+        val responseCourseSections = response.body() ?: return ArrayList(0)
+        return resolve(responseCourseSections)
     }
 
-    public void getCourseData(int courseId, @Nullable final CallBack<List<CourseSection>> callBack) {
-        Call<List<CourseSection>> courseCall = moodleServices.fetchCourseContent(userAccount.getToken(), courseId);
-        courseCall.enqueue(new Callback<List<CourseSection>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<CourseSection>> call, @NonNull Response<List<CourseSection>> response) {
-                List<CourseSection> responseCourseSections = response.body();
-                if (responseCourseSections == null) return;
-                List<CourseSection> sectionList = resolve(responseCourseSections);
-                if (callBack != null) {
-                    callBack.onResponse(sectionList);
-                }
+    fun getCourseData(courseId: Int, callBack: CallBack<List<CourseSection>?>?) {
+        val courseCall = moodleServices.fetchCourseContent(userAccount.token, courseId)
+        courseCall.enqueue(object : Callback<List<CourseSection>?> {
+            override fun onResponse(
+                call: Call<List<CourseSection>?>,
+                response: Response<List<CourseSection>?>
+            ) {
+                val responseCourseSections = response.body() ?: return
+                val sectionList = resolve(responseCourseSections)
+                callBack?.onResponse(sectionList)
             }
 
-            @Override
-            public void onFailure(@NotNull Call<List<CourseSection>> call, @NotNull Throwable t) {
-                if (callBack != null) {
-                    callBack.onFailure(t.getMessage(), t);
-                }
+            override fun onFailure(call: Call<List<CourseSection>?>, t: Throwable) {
+                callBack?.onFailure(t.message, t)
             }
-        });
+        })
     }
 
-
-    public List<Discussion> getForumDiscussions(int moduleId) {
-        Call<ForumData> callForumData = moodleServices.getForumDiscussions(userAccount.getToken(), moduleId, 0, 0);
+    fun getForumDiscussions(moduleId: Int): List<Discussion>? {
+        val callForumData = moodleServices.getForumDiscussions(userAccount.token, moduleId, 0, 0)
         try {
-            Response<ForumData> response = callForumData.execute();
+            val response = callForumData.execute()
             if (response.code() != 200) {
-                return null;
+                return null
             }
-            ForumData forumData = response.body();
-            if (forumData == null) return null;
-            return forumData.getDiscussions();
-        } catch (IOException e) {
-            Log.w(TAG, "IOException while getting Forum Discussions", e);
+            val (discussions) = response.body() ?: return null
+            return discussions
+        } catch (e: IOException) {
+            Log.w(TAG, "IOException while getting Forum Discussions", e)
         }
-        return null;
+        return null
     }
 
-
-    @NotNull
-    public List<Discussion> getForumDicussionsSync(int moduleId) throws IOException {
-        Call<ForumData> call = moodleServices.getForumDiscussions(userAccount.getToken(), moduleId, 0, 0);
-        Response<ForumData> response = call.execute();
-        if (response.body() == null) return new ArrayList<>(0);
-        return response.body().getDiscussions();
+    @Throws(IOException::class)
+    fun getForumDicussionsSync(moduleId: Int): List<Discussion> {
+        val call = moodleServices.getForumDiscussions(userAccount.token, moduleId, 0, 0)
+        val response = call.execute()
+        return if (response.body() == null) ArrayList(0) else response.body()!!.discussions
     }
 
-    public void getForumDiscussions(int moduleId, @Nullable final CallBack<List<Discussion>> callBack) {
-        Call<ForumData> call = moodleServices.getForumDiscussions(userAccount.getToken(), moduleId, 0, 0);
-        call.enqueue(new Callback<ForumData>() {
-            @Override
-            public void onResponse(@NotNull Call<ForumData> call, @NotNull Response<ForumData> response) {
-                if (response.body() == null) return;
-                List<Discussion> discussions = response.body().getDiscussions();
-                if (callBack != null) {
-                    callBack.onResponse(discussions);
-                }
+    fun getForumDiscussions(moduleId: Int, callBack: CallBack<List<Discussion?>?>?) {
+        val call = moodleServices.getForumDiscussions(userAccount.token, moduleId, 0, 0)
+        call.enqueue(object : Callback<ForumData?> {
+            override fun onResponse(call: Call<ForumData?>, response: Response<ForumData?>) {
+                if (response.body() == null) return
+                val discussions: List<Discussion?> = response.body()!!.discussions
+                callBack?.onResponse(discussions)
             }
 
-            @Override
-            public void onFailure(@NotNull Call<ForumData> call, @NotNull Throwable t) {
-                if (callBack != null) {
-                    callBack.onFailure(NETWORK_ERROR, t);
-                }
+            override fun onFailure(call: Call<ForumData?>, t: Throwable) {
+                callBack?.onFailure(NETWORK_ERROR, t)
             }
-        });
+        })
     }
 
     //This method resolves the names of files with same names
-    private List<CourseSection> resolve(List<CourseSection> courseSections) {
-        List<Content> contents = new ArrayList<>();
-        for (CourseSection courseSection : courseSections) {
-            for (Module module : courseSection.getModules()) {
-                List<Content> currContents = module.getContents();
-                    contents.addAll(currContents);
+    private fun resolve(courseSections: List<CourseSection>): List<CourseSection> {
+        val contents: MutableList<Content> = ArrayList()
+        for (courseSection in courseSections) {
+            for (module in courseSection.modules) {
+                val currContents: List<Content> = module.contents
+                contents.addAll(currContents)
             }
         }
-
-        Set<Content> set = new TreeSet<>((c1, c2) -> c1.getFileName().compareTo(c2.getFileName()));
-        for (Content c : contents) {
+        val set: MutableSet<Content> =
+            TreeSet { c1: Content, c2: Content -> c1.fileName.compareTo(c2.fileName) }
+        for (c in contents) {
             while (!set.add(c)) {
-                changeName(c);
+                changeName(c)
             }
         }
-
-        return courseSections;
+        return courseSections
     }
 
-    private void changeName(Content content) {
-        String fileName = content.getFileName();
-        String newFileName = fileName;
+    private fun changeName(content: Content) {
+        val fileName = content.fileName
+        var newFileName = fileName
 
         // new file name will be of the format <original>(count)[.ext]
-        int lastIndex = fileName.lastIndexOf('(');
-        boolean countUpdated = false;
+        val lastIndex = fileName.lastIndexOf('(')
+        var countUpdated = false
         if (lastIndex != -1) {
-            String fileNum = fileName.substring(lastIndex + 1, fileName.lastIndexOf(')'));
+            val fileNum = fileName.substring(lastIndex + 1, fileName.lastIndexOf(')'))
             try {
-                int count = Integer.parseInt(fileNum);
-                newFileName = fileName.substring(0, lastIndex + 1)
+                var count = fileNum.toInt()
+                newFileName = (fileName.substring(0, lastIndex + 1)
                         + ++count
-                        + fileName.substring(fileName.lastIndexOf(')'));
-                countUpdated = true;
-            } catch (NumberFormatException e) {
+                        + fileName.substring(fileName.lastIndexOf(')')))
+                countUpdated = true
+            } catch (e: NumberFormatException) {
             }
         }
-
         if (!countUpdated) {
-            int extension = fileName.lastIndexOf('.');
-            if (extension != -1) {
-                newFileName = fileName.substring(0, extension) + "(1)" +
-                        fileName.substring(extension);
+            val extension = fileName.lastIndexOf('.')
+            newFileName = if (extension != -1) {
+                fileName.substring(0, extension) + "(1)" +
+                        fileName.substring(extension)
             } else {
-                newFileName = fileName + "(1)";
+                "$fileName(1)"
             }
         }
-        content.setFileName(newFileName);
+        content.fileName = newFileName
     }
 
-    public interface CallBack<T> {
+    interface CallBack<T> {
+        fun onResponse(responseObject: T)
+        fun onFailure(message: String?, t: Throwable?)
+    }
 
-        void onResponse(T responseObject);
+    companion object {
+        val TAG = CourseRequestHandler::class.java.name
+        const val INVALID_TOKEN = "Invalid token"
+        const val NETWORK_ERROR = "Network error"
+        const val ACCESS_EXCEPTION = "accessexception"
+    }
 
-        void onFailure(String message, Throwable t);
+    init {
+        userAccount = UserAccount
+        val retrofit = APIClient.getRetrofitInstance()
+        moodleServices = retrofit.create(MoodleServices::class.java)
     }
 }
