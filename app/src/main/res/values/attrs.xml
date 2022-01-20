@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IlimboxAppTheme">
+        <attr name="themeBackground" format="reference" />
+        <attr name="navBarColorStates" format="reference" />
+        <attr name="navBarAppearance" format="reference" />
+        <attr name="navBarHeaderDrawable" format="reference" />
+        <attr name="iconTintColor" format="reference" />
+        <attr name="cardBgColor" format="reference" />
+        <attr name="unReadModule" format="reference" />
+        <attr name="tokenImageTint" format="reference" />
+        <attr name="dividerColor" format="reference" />
+        <attr name="textButtonColor" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CollapsibleTextView">
+        <!-- The full, expanded text -->
+        <attr name="full_text" format="string" />
+        <!-- The string that, when clicked, will collapse the text. If not set,
+        expanded views won't be collapsible by user input. -->
+        <attr name="collapse_text" format="string" />
+        <!-- The string that, when clicked, will expand the text  -->
+        <attr name="expand_text" format="string" />
+        <!-- The maximum number of lines to be shown the text is collapsed. -->
+        <attr name="collapsed_line_count" format="integer" />
+    </declare-styleable>
+</resources>

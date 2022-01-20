@@ -1,0 +1,42 @@
+package ilimboxAndroid.ilimbox.models.course
+
+import androidx.core.text.HtmlCompat
+import com.google.gson.annotations.SerializedName
+import ilimboxAndroid.ilimbox.interfaces.CourseContent
+import io.realm.RealmList
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+
+
+open class CourseSection(
+        @PrimaryKey  @SerializedName("id") var id: Int = 0,
+        name: String = "",
+        @SerializedName("section") var sectionNum: Int = 0,
+        @SerializedName("summary") var summary: String = "",
+        @SerializedName("modules") var modules: RealmList<Module> = RealmList<Module>(),
+        var courseId: Int = 0,
+) : RealmObject(), CourseContent {
+
+    @SerializedName("name") var name: String = name
+        get() {
+            return HtmlCompat.fromHtml(field, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+                    .trim { it <= ' ' }
+        }
+
+    fun deepCopy(): CourseSection  = CourseSection(
+            id,
+            name,
+            sectionNum,
+            summary,
+            RealmList<Module>(*modules.map { it.deepCopy() }.toTypedArray()),
+            courseId,
+    )
+
+    override fun equals(other: Any?): Boolean {
+        return other is CourseSection && other.id == id
+    }
+
+    override fun hashCode(): Int {
+        return id
+    }
+}

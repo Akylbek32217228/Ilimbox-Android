@@ -1,0 +1,162 @@
+[
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_forum.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_forum.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_course.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_course.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_attachment_detail_forum.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_attachment_detail_forum.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_bording.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_bording.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_video.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_video.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_web_view.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_web_view.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_more.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_more.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_sms_code.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_sms_code.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_sms_code.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_sms_code.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_download.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_download.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_search_course.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_search_course.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_course_detail.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_course_detail.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_search_course.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_search_course.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_bording_one.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_bording_one.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_course_section.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_course_section.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_edit.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_edit.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_bording_three.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_bording_three.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_class_number.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_class_number.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_course_module.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_course_module.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_browser.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_browser.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_course_section.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_course_section.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\downloads_fragment.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\downloads_fragment.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_info.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_info.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_my_courses.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_my_courses.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_more_options.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_more_options.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_registration.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_registration.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_class_number.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_class_number.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_folder_module.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_folder_module.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_folder_module_file.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_folder_module_file.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_discussion.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_discussion.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_course_enrol.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_course_enrol.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_more_options.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_more_options.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\video_progress.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\video_progress.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login_phone.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_login_phone.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_lesson_content.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_lesson_content.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_forum.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\row_forum.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\preferences_layout.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\preferences_layout.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_token.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\activity_token.xml"
+    },
+    {
+        "merged": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_bording_two.xml",
+        "source": "E:\\akyl\\Android\\Ilimbox-github\\Ilimbox-Android\\app\\src\\main\\res\\layout\\fragment_bording_two.xml"
+    }
+]

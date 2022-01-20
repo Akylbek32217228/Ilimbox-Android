@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="notifications"
+        android:title="Уведомления"
+        android:icon="@drawable/ic_bell"
+        android:layout="@layout/preferences_layout" />
+
+    <SwitchPreference
+        android:icon="@drawable/ic_brightness_4"
+        android:key="DARK_MODE"
+        android:title="Темная тема"
+        android:layout="@layout/preferences_layout" />
+
+</PreferenceScreen>

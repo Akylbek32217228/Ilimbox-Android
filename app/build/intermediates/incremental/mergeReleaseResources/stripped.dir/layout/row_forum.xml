@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/actionButtonStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/click_wrapper"
+        app:cardBackgroundColor="?cardBgColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/user_pic"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:contentDescription="@null"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/barrier_message" />
+
+            <TextView
+                android:id="@+id/subject"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/example_discussion_title"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textIsSelectable="true"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/barrier_profile_pic" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/example_discussion_prof"
+                android:textColor="?android:textColorSecondary"
+
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/barrier_profile_pic"
+                app:layout_constraintEnd_toStartOf="@id/modified_time"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toBottomOf="@id/subject"
+                app:layout_constraintBottom_toBottomOf="@id/barrier_message"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="2.5" />
+
+            <TextView
+                android:id="@+id/modified_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/example_date"
+                android:gravity="end"
+                android:textColor="?android:textColorSecondary"
+                android:textSize="14sp"
+
+                app:layout_constraintTop_toBottomOf="@id/subject"
+                app:layout_constraintBottom_toBottomOf="@id/barrier_message"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@id/user_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="1"/>
+
+            <View
+                android:id="@+id/nameAndDescriptionDivider"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="4dp"
+
+                android:background="?dividerColor"
+                app:layout_constraintTop_toBottomOf="@id/barrier_message"
+                app:layout_constraintBottom_toTopOf="@id/message" />
+
+            <ilimboxAndroid.bphc.ilimbox.widgets.HtmlTextView
+                android:id="@+id/message"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="1"
+                android:text="@string/lorem"
+                android:textColor="?android:textColorSecondary"
+                android:textSize="12sp"
+                android:textIsSelectable="true"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/user_pic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_profile_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="right"
+                app:constraint_referenced_ids="user_pic" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="user_pic,user_name,modified_time" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/pinned"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end|top"
+        android:background="@drawable/notif_counter_bg"
+        android:contentDescription="@string/pinned_discussion"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:padding="4dp"
+        app:srcCompat="@drawable/pin" />
+</FrameLayout>

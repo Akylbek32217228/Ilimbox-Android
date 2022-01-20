@@ -1,0 +1,136 @@
+<resources>
+    <!-- General Strings, used in more than one place -->
+    <string name="app_name">Ilimbox Platform</string>
+    <string name="powered_by_crux">Powered by ilimBox</string>
+    <string name="please_login_to_continue">Пожайлуйста войдите для продолжения.</string>
+    <string name="no_cached_data">Проверьте соединение с сетью</string>
+    <string name="loading_cached_data">Загружается кэшированные данные. Пожалуйста подождите</string>
+    <string name="net_req_failed">Соединение потеряно. Пожалуйста подождите</string>
+
+    <!-- Main Activity Navigation Menu -->
+    <string name="nav_bar_my_courses">Мои курсы</string>
+    <string name="nav_bar_site_news">Новости</string>
+    <string name="nav_bar_settings">Настройки</string>
+    <string name="nav_bar_website">Сайт</string>
+    <string name="nav_bar_share">Поделиться</string>
+    <string name="nav_bar_feedback">Фидбек</string>
+    <string name="nav_bar_about">О проекте</string>
+    <string name="nav_bar_enrol_course">Войти</string>
+    <string name="nav_bar_logout">Выйти</string>
+    <string name="nav_bar_more">Найстройки</string>
+
+    <!-- My Courses -->
+    <string name="upToDate">Курсы обновлены</string>
+    <string name="search_my_courses">Поиск моих курсов</string>
+    <string name="no_my_courses">Нет курсов</string>
+    <string name="added_to_favorites">Добавить в избранное</string>
+    <string name="removed_from_favorites">Удалить изи избранного</string>
+    <string name="favorite">Избранные</string>
+    <plurals name="noOfCoursesUpdated">
+        <item quantity="one">%d Курс Обновлен</item>
+        <item quantity="other">%d Курс обновлен</item>
+    </plurals>
+
+    <!-- Course Sections -->
+    <string name="open_course_website_on_browser">открыть страницу в браузере</string>
+    <string name="mark_all_as_read">Пометить все как прочитанное</string>
+    <string name="failed_course_content_refresh">Не получилось загрузить контент курса.\n Нажмите чтобы повторить.</string>
+
+    <!-- Forum posts and Discussions -->
+    <string name="no_posts_to_display">Нет новостей</string>
+    <string name="discussion_attachments">Приклепленное</string>
+    <string name="pinned_discussion">Закрепить обсуждение</string>
+
+    <!-- Course Search -->
+    <string name="course_search_edit_text_hint">Введите название курса</string>
+    <string name="no_search_course_results">Куср с таким именем не найден</string>
+
+    <!-- Course Enrol -->
+    <string name="course_enrol_category">Категория</string>
+    <string name="course_enrol_teachers">Учитель</string>
+    <string name="course_enrol_self_enrol_button">Записаться</string>
+    <string name="course_enrol_teachers_no_info">Нет информаций</string>
+    <string name="course_enrol_confirmation_msg">Вы уверены что хотите записаться на этот курс?</string>
+
+    <!-- App Info -->
+    <string name="app_info"><![CDATA[This companion app for Moodle (CMS) is open source. It provides live notifications
+        on course content addition and also many essential features.<br /><br />You can use the
+        <a href="https://github.com/crux-bphc/CMS-Android/issues">issues</a> tab on
+        <a href="https://github.com/crux-bphc/CMS-Android">GitHub</a> to submit ideas for new features or report any
+        bugs. <br />Click the logo below to visit our website.]]></string>
+
+    <!-- Push Notification Messages -->
+    <string name="push_notif_reg_failure">Не удалось зарегистрироваться!</string>
+    <string name="push_notif_dereg_failure">Не удалось отменить регистрацию с сервера для push-уведомлений!</string>
+
+    <!-- Content descriptions for generic views -->
+    <string name="download_go">Загрузить</string>
+    <string name="more_options_btn">Дополнительные настройки</string>
+
+    <!-- Placeholders used for previewing layouts -->
+    <string name="example_student_name">Sultanov Akylbek</string>
+    <string name="example_id_number">32217228</string>
+    <string name="example_date">8 Feb, 1997</string>
+    <string name="example_course_name">Математика 8 класс</string>
+    <string name="example_module_name">Задание 1</string>
+    <string name="example_course_section_name">Секция 1</string>
+    <string name="example_discussion_title">Timetable changes – 2 Second Semester 2016–17</string>
+    <string name="example_discussion_prof">Instruction Division</string>
+    <string name="example_discussion_attachment_name">Time table changes-2 second sem</string>
+    <string name="example_course_number">BITS F314</string>
+    <string name="example_course_category">Semester II – 2019–20</string>
+    <string name="example_commit_hash"></string>
+    <string name="example_app_version_name">v1.0.1</string>
+    <string name="lorem"></string>
+    <string name="navigate">Навигация</string>
+
+    <string name="logout_notif_content">Вы вышли из системы при попытке обновить курс
+        содержимое в фоновом режиме. Откройте приложение и войдите еще раз.</string>
+    <string name="logout_notif_title">Неожиданный выход</string>
+    <string name="remove_from_favorites">Удалить из Избранного</string>
+    <string name="addtoFavorites">Добавить в избранное</string>
+    <string name="downloading_file">\"Загрузка файла - \"</string>
+    <string name="invalid_course_id">Недействительный идентификатор курса!</string>
+    <string name="cms"></string>
+    <string name="title_bphc"></string>
+    <string name="sign_in_prompt">Войдите с помощью электронной почты BITS</string>
+    <string name="mark_as_read">пометить, как прочитанное</string>
+    <string name="download_course_contents">Скачать содержание курса</string>
+    <string name="file_description">%1$s, %2$s, %3$s</string>
+    <string name="nav_bar_files">Файлы</string>
+    <string name="delete_file_folder">Удалить этот файл/папку</string>
+    <string name="delete_file_dialog_title">Удалить %1$s?</string>
+    <string name="delete_file_dialog_message">Удаление этого %1$s навсегда удалит его с вашего устройства и освободит около %2$s места..</string>
+    <string name="delete_file_dialog_neutral">Отменить</string>
+    <string name="delete_file_dialog_positive">Удалить</string>
+    <string name="file">Файл</string>
+    <string name="folder">Папка</string>
+    <string name="delete_file_success">Успешно удалено</string>
+    <string name="delete_file_failed">Ошибка удаления</string>
+    <string name="root_no_files"></string>
+    <string name="no_files">Здесь нет файлов.</string>
+    <string name="folder_no_items_zero">No items</string>
+    <string name="folder_no_items_one">1 item, %1$s</string>
+    <string name="folder_no_items_many">%1$d items, %2$s</string>
+    <string name="login">Войти</string>
+    <string name="user_name">Имя пользователя</string>
+    <string name="enter_name">Почта/Логин</string>
+    <string name="password">Пароль</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Привет пустой фрагмент</string>
+    <string name="bording_title_one">ilimbox - это онлайн\nобразовательная платформа для школ.</string>
+    <string name="bording_decription_two">В платформе собраны все доступные образовательных материалы, цифровые книги, видео уроки, аудио-книги, тесты.</string>
+    <string name="next">Далее</string>
+    <string name="bording_title_two">Преподавателям</string>
+    <string name="bording_dectription_two">Каждый преподаватель может создать свои уроки или доработать имеющиеся.</string>
+    <string name="bording_title_three">Учащимся</string>
+    <string name="bording_decription_three">Бесплатно для учащихся средних школ Кыргызстана. Ученикам даётся возможность оценивать учебные материалы.</string>
+    <string name="end_bording_text">Завершить</string>
+    <string name="_1">1</string>
+    <string name="chooseClass">Выберите свой класс:</string>
+    <string name="registration">Введите ваш номер</string>
+    <string name="get_phone_number">Введите номер</string>
+    <string name="get_code">Получить код</string>
+    <string name="keystore_pass">some-password</string>
+    <string name="create_user_token">e13ea9e95a7e49b4cdec851e469c0a6e</string>
+</resources>

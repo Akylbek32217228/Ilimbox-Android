@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myCoursesFragment"
+        android:icon="@drawable/ic_inbox"
+        android:title="@string/nav_bar_my_courses" />
+
+
+    <item
+        android:id="@+id/searchCourseFragment"
+        android:icon="@drawable/ic_clipboard"
+        android:title="@string/nav_bar_enrol_course" />
+
+    <item
+        android:id="@+id/forumFragment"
+        android:icon="@drawable/ic_newspaper"
+        android:title="@string/nav_bar_site_news" />
+
+    <item
+        android:id="@+id/downloadsFragment"
+        android:icon="@drawable/outline_folder_24"
+        android:title="@string/nav_bar_files" />
+
+    <item
+        android:id="@+id/moreFragment"
+        android:icon="@drawable/dots_horizontal"
+        android:title="@string/nav_bar_more" />
+
+</menu>
